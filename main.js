@@ -1,5 +1,4 @@
 // ROSE-META-ELECTRON-APP/main.js
-const { ipcRenderer } = require('electron');
 
 window.onload = () => {
   const backBtn = document.getElementById('backBtn');
@@ -7,7 +6,7 @@ window.onload = () => {
 
   if (backBtn) {
     backBtn.addEventListener('click', () => {
-      ipcRenderer.send('return-to-launcher');
+      window.electronAPI.sendToMain('return-to-launcher');
     });
   } else {
     console.error('Back button not found');
