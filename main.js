@@ -8,15 +8,17 @@ window.onload = () => {
     backBtn.addEventListener('click', () => {
       window.electronAPI.sendToMain('return-to-launcher');
     });
-  } else {
-    console.error('Back button not found');
   }
 
   if (fetchBtn) {
-    fetchBtn.addEventListener('click', () => {
-      alert('Fetch Games function coming soon!');
+    fetchBtn.addEventListener('click', async () => {
+      const result = await window.electronAPI.seedDefaultGames();
+      if (result.success) {
+        alert("Games seeded successfully!");
+      } else {
+        alert("Failed to seed games: " + result.error);
+      }
     });
-  } else {
-    console.error('Fetch Games button not found');
   }
 };
+
